@@ -15,6 +15,7 @@ my $build = Module::Build->new(
         'Exporter'                      => '0',
         'parent'                        => '0',
         'XSLoader'                      => '0',
+        perl => '5.008008',
     },
 
     no_index    => { 'directory' => [ 'inc' ] },

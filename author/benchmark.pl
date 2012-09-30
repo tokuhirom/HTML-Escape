@@ -13,7 +13,7 @@ my $txt = "<=> (^^)" x 10000;
 cmpthese(
     -1, {
         "HTML::Escape" => sub {
-            html_escape($txt);
+            escape_html($txt);
         },
         "HTML::Entities" => sub {
             encode_entities($txt);

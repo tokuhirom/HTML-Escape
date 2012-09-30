@@ -10,7 +10,7 @@ package # do not index, pause.
     HTML::Escape;
 
 our %_escape_table = ( '&' => '&amp;', '>' => '&gt;', '<' => '&lt;', q{"} => '&quot;', q{'} => '&#39;' );
-sub html_escape {
+sub escape_html {
     my $str = shift;
     return ''
         unless defined $str;

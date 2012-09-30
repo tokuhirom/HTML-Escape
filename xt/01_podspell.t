@@ -63,3 +63,6 @@ htmlspecialchars
 HTML's
 PHP's
 XS
+Goro
+Fuji
+gfx

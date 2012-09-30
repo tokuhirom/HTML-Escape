@@ -9,7 +9,7 @@
 
 
 static void /* doesn't care about raw-ness */
-tx_sv_cat_with_html_escape_force(pTHX_ SV* const dest, SV* const src) {
+tx_sv_cat_with_escape_html_force(pTHX_ SV* const dest, SV* const src) {
     STRLEN len;
     const char*       cur = SvPV_const(src, len);
     const char* const end = cur + len;
@@ -59,12 +59,12 @@ tx_sv_cat_with_html_escape_force(pTHX_ SV* const dest, SV* const src) {
 }
 
 static SV*
-tx_html_escape(pTHX_ SV* const str) {
+tx_escape_html(pTHX_ SV* const str) {
     dMY_CXT;
     SvGETMAGIC(str);
     if(!( !SvOK(str) )) {
         SV* const dest = newSVpvs_flags("", SVs_TEMP);
-        tx_sv_cat_with_html_escape_force(aTHX_ dest, str);
+        tx_sv_cat_with_escape_html_force(aTHX_ dest, str);
         return dest;
     }
     else {
@@ -77,9 +77,9 @@ MODULE = HTML::Escape    PACKAGE = HTML::Escape
 PROTOTYPES: DISABLE
 
 void
-html_escape(SV* str)
+escape_html(SV* str)
 CODE:
 {
-    ST(0) = tx_html_escape(aTHX_ str);
+    ST(0) = tx_escape_html(aTHX_ str);
 }
 

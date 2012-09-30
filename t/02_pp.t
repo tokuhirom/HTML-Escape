@@ -7,9 +7,9 @@ BEGIN {
 }
 use HTML::Escape;
 
-is(html_escape("<^o^>"), '&lt;^o^&gt;');
-is(html_escape("'"), "&#39;");
-is(html_escape("\0>"), "\0&gt;");
+is(escape_html("<^o^>"), '&lt;^o^&gt;');
+is(escape_html("'"), "&#39;");
+is(escape_html("\0>"), "\0&gt;");
 
 done_testing;
 

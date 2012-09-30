@@ -21,7 +21,7 @@ if ($TESTING_PERL_ONLY) {
     require 'HTML/Escape/PurePerl.pm' # not to create the namespace
 }
 
-our @EXPORT = qw/html_escape/;
+our @EXPORT = qw/escape_html/;
 
 1;
 __END__
@@ -34,9 +34,9 @@ HTML::Escape - Extremely fast HTML escape
 
 =head1 SYNOPSIS
 
-    use HTML::Escape qw/html_escape/;
+    use HTML::Escape qw/escape_html/;
 
-    html_escape("<^o^>");
+    escape_html("<^o^>");
 
 =head1 DESCRIPTION
 
