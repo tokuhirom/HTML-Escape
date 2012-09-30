@@ -12,8 +12,8 @@ $TESTING_PERL_ONLY = $ENV{HTML_ESCAPE_PUREPERL} ? 1 : 0
 unless($TESTING_PERL_ONLY){
     local $@;
     $TESTING_PERL_ONLY = !eval{
-            require XSLoader;
-            XSLoader::load(__PACKAGE__, $VERSION);
+        require XSLoader;
+        XSLoader::load(__PACKAGE__, $VERSION);
     };
 }
 if ($TESTING_PERL_ONLY) {
