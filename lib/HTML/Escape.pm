@@ -5,21 +5,22 @@ use 5.008008;
 our $VERSION = '1.00';
 use parent qw/Exporter/;
 
-our $TESTING_PERL_ONLY;
-$TESTING_PERL_ONLY = $ENV{HTML_ESCAPE_PUREPERL} ? 1 : 0
-        unless defined $TESTING_PERL_ONLY;
-
-unless($TESTING_PERL_ONLY){
-    local $@;
-    $TESTING_PERL_ONLY = !eval{
-        require XSLoader;
-        XSLoader::load(__PACKAGE__, $VERSION);
-    };
+my $use_xs = 0;
+if(!exists $INC{'HTML/Escape/PurePerl.pm'}) {
+    my $pp = $ENV{PERL_ONLY};
+    if (!$pp) {
+        eval {
+            require XSLoader;
+            XSLoader::load(__PACKAGE__, $VERSION);
+            $use_xs = 1;
+        };
+    }
+    if (!__PACKAGE__->can('escape_html')) {
+        ## no critic.
+        require 'HTML/Escape/PurePerl.pm' # not to create the namespace
+    }
 }
-if ($TESTING_PERL_ONLY) {
-    ## no critic.
-    require 'HTML/Escape/PurePerl.pm' # not to create the namespace
-}
+sub USE_XS () { $use_xs }
 
 our @EXPORT = qw/escape_html/;
 

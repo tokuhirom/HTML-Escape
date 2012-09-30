@@ -4,6 +4,7 @@ use utf8;
 use Test::More;
 use HTML::Escape;
 
+ok(HTML::Escape::USE_XS);
 is(escape_html("<^o^>"), '&lt;^o^&gt;');
 is(escape_html("'"), "&#39;");
 is(escape_html("\0>"), "\0&gt;");
