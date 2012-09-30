@@ -45,6 +45,17 @@ This module escapes HTML's special chars. It's same as PHP's htmlspecialchars.
 This module uses XS for better performance.
 And also provides pure perl version.
 
+=head1 FAQ
+
+=over 4
+
+=item Is there a unescape_html?
+
+No. Unescaping HTML needs a lot of code, gfx don't want to do it.
+Please use L<HTML::Entities> for it.
+
+=back
+
 =head1 BENCHMARK
 
                      Rate HTML::Entities   HTML::Escape
