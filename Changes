@@ -1,4 +1,9 @@
 Revision history for Perl extension HTML::Escape
 
+1.00
+    
+    [INCOMPATIBLE CHANGE]
+    - s/html_escape/escape_html/g
+
 0.01    Sun Sep 30 15:09:52 2012
     - original version

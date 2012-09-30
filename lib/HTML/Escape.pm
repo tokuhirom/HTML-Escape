@@ -2,7 +2,7 @@ package HTML::Escape;
 use strict;
 use warnings;
 use 5.008008;
-our $VERSION = '0.01';
+our $VERSION = '1.00';
 use parent qw/Exporter/;
 
 our $TESTING_PERL_ONLY;
