@@ -12,9 +12,9 @@ my $build = Module::Build->new(
     },
     configure_requires   => { 'Module::Build' => '0.38' },
     requires             => {
-        # 'Exporter'                      => '0',
+        'Exporter'                      => '0',
         'parent'                        => '0',
-        # 'Plack'                         => '0.9949',
+        'XSLoader'                      => '0',
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
