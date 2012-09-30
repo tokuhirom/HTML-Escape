@@ -53,9 +53,13 @@ And also provides pure perl version.
 
 =head1 AUTHOR
 
+Goro Fuji
+
 Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF@ GMAIL COME<gt>
 
 =head1 SEE ALSO
+
+L<Text::Xslate>, L<HTML::Entities>
 
 =head1 LICENSE
 
