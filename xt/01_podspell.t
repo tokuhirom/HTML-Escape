@@ -58,3 +58,8 @@ Gosuke
 Miyashita
 mysqldiff
 mmm
+PHP
+htmlspecialchars
+HTML's
+PHP's
+XS
