@@ -1,5 +1,10 @@
 Revision history for Perl extension HTML::Escape
 
+1.02
+
+    [BUG FIX]
+    - works on ithread enabled perl.
+
 1.01
 
     - use Text::Xslate style pure perl module loading

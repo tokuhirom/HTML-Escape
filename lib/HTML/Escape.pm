@@ -2,7 +2,7 @@ package HTML::Escape;
 use strict;
 use warnings;
 use 5.008008;
-our $VERSION = '1.01';
+our $VERSION = '1.02';
 use parent qw/Exporter/;
 
 my $use_xs = 0;
