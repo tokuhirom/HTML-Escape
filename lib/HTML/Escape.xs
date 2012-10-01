@@ -60,7 +60,6 @@ tx_sv_cat_with_escape_html_force(pTHX_ SV* const dest, SV* const src) {
 
 static SV*
 tx_escape_html(pTHX_ SV* const str) {
-    dMY_CXT;
     SvGETMAGIC(str);
     if(!( !SvOK(str) )) {
         SV* const dest = newSVpvs_flags("", SVs_TEMP);
