@@ -15,7 +15,7 @@ my $build = Module::Build->new(
     },
     configure_requires   => {
         'Module::Build' => '0.38',
-        'Devel::PPort'  => '3.06',
+        'Devel::PPPort'  => '3.06',
     },
     requires             => {
         'Exporter'                      => '0',
