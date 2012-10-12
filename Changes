@@ -1,5 +1,10 @@
 Revision history for Perl extension HTML::Escape
 
+1.04
+
+    - fixed typo in dependency list.
+      (Reported by syohex++)
+
 1.03
 
 	- depend to perl 5.8.5, gfx was tested on it.
