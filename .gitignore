@@ -2,6 +2,7 @@ Makefile
 inc/
 .c
 ppport.h
+ppport.h
 *.sw[po]
 *.bak
 *.old
