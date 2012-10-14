@@ -12,10 +12,11 @@ my $build = Module::Build->new(
     build_requires       => {
         'Test::More' => '0.98',
         'Test::Requires' => 0,
+        'Devel::PPPort'  => '3.20',
     },
     configure_requires   => {
-        'Module::Build' => '0.38',
-        'Devel::PPPort'  => '3.06',
+        'Module::Build' => '0.4003',
+        'Devel::PPPort'  => '3.20',
     },
     requires             => {
         'Exporter'                      => '0',
