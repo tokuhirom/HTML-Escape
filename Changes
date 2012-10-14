@@ -1,5 +1,10 @@
 Revision history for Perl extension HTML::Escape
 
+1.05
+
+    - Fixed ppport.h generation logic.
+      (tokuhirom)
+
 1.04
 
     - fixed typo in dependency list.

@@ -18,3 +18,4 @@ META.json
 META.yml
 README
 lib/HTML/Escape.c
+lib/HTML/Escape.o
