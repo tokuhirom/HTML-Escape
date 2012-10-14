@@ -1,9 +1,9 @@
-#define NEED_newSVpvn_flags_GLOBAL
-#define NEED_newSVpvn_share
-#define NEED_newSV_type
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
+
+#define NEED_newSVpvn_flags
+#define NEED_sv_2pv_flags
 
 #include "ppport.h"
 
@@ -43,8 +43,8 @@ tx_sv_cat_with_escape_html_force(pTHX_ SV* const dest, SV* const src) {
             CopyToken("&quot;", d);
         }
         else if(c == '\'') {
-            // XXX: Internet Explorer (at least version 8) doesn't support &apos; in title
-            // CopyToken("&apos;", d);
+            /* XXX: Internet Explorer (at least version 8) doesn't support &apos; in title */
+            /* CopyToken("&apos;", d); */
             CopyToken("&#39;", d);
         }
         else {
