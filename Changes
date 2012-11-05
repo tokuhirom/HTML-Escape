@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Escape
 
+1.06
+
+    - use M::B::Pluggable(No feature changes)
+
 1.05
 
     - Fixed ppport.h generation logic.
