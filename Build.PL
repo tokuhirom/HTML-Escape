@@ -1,31 +1,12 @@
 use strict;
 use warnings;
-use Module::Build;
-
-
-my $class = Module::Build->subclass(
-  code => q{
-    use Devel::PPPort;
-
-    sub ACTION_build {
-        my $self = shift;
-        $self->depends_on('ppport_h');
-        $self->SUPER::ACTION_build;
+use Module::Build::Pluggable (
+    'PPPort', {
+        filename => 'lib/HTML/ppport.h'
     }
-
-    sub ACTION_ppport_h {
-        my $self = shift;
-        my $filepath = 'lib/HTML/ppport.h';
-        unless (-e $filepath) {
-            print "Writing $filepath\n";
-            Devel::PPPort::WriteFile($filepath);
-        }
-        $self->add_to_cleanup($filepath);
-    }
-  },
 );
 
-my $build = $class->new(
+my $build = Module::Build::Pluggable->new(
     license              => 'perl',
     dynamic_config       => 0,
 
