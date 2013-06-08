@@ -2,6 +2,12 @@ Revision history for Perl extension HTML::Escape
 
 {{$NEXT}}
 
+1.08 2013-06-08T16:02:51Z
+
+    - Escape backquote character for IE
+      (Requested by John Siracusa)
+      https://rt.cpan.org/Public/Bug/Display.html?id=84971
+
 1.07 2013-06-08T04:59:08Z
 
     - use Minilla(no feature changes)
