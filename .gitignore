@@ -1,8 +1,6 @@
 Makefile
 inc/
 .c
-ppport.h
-ppport.h
 *.sw[po]
 *.bak
 *.old
@@ -14,8 +12,14 @@ pm_to_blib
 blib/
 META.yml
 MYMETA.*
-META.json
 META.yml
 README
 lib/HTML/Escape.c
 lib/HTML/Escape.o
+/HTML-Escape-*
+/.build
+/_build_params
+/Build
+!Build/
+!META.json
+!LICENSE

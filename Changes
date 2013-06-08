@@ -1,5 +1,11 @@
 Revision history for Perl extension HTML::Escape
 
+{{$NEXT}}
+
+1.07 2013-06-08T04:59:08Z
+
+    - use Minilla(no feature changes)
+
 1.06
 
     - use M::B::Pluggable(No feature changes)
