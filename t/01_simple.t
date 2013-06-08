@@ -11,6 +11,7 @@ ok(HTML::Escape::USE_XS, "uses XS module") or do {
 is(escape_html("<^o^>"), '&lt;^o^&gt;');
 is(escape_html("'"), "&#39;");
 is(escape_html("\0>"), "\0&gt;");
+is(escape_html("`"), "&#96;");
 
 done_testing;
 
