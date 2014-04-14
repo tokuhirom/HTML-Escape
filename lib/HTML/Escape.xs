@@ -45,6 +45,12 @@ tx_sv_cat_with_escape_html_force(pTHX_ SV* const dest, SV* const src) {
         else if(c == '`') {
             CopyToken("&#96;", d);
         }
+        else if(c == '{') {
+            CopyToken("&#123;", d);
+        }
+        else if(c == '}') {
+            CopyToken("&#125;", d);
+        }
         else if(c == '\'') {
             /* XXX: Internet Explorer (at least version 8) doesn't support &apos; in title */
             /* CopyToken("&apos;", d); */
