@@ -2,6 +2,12 @@ Revision history for Perl extension HTML::Escape
 
 {{$NEXT}}
 
+1.09 2014-04-14T07:34:14Z
+
+    - Escape '{' && '}' by default.
+      https://github.com/angular/angular.js/issues/5601
+      (tokuhirom)
+
 1.08 2013-06-08T16:02:51Z
 
     - Escape backquote character for IE

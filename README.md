@@ -20,7 +20,7 @@ And also provides pure perl version.
 - Is there a unescape\_html?
 
     No. Unescaping HTML needs a lot of code, gfx don't want to do it.
-    Please use [HTML::Entities](http://search.cpan.org/perldoc?HTML::Entities) for it.
+    Please use [HTML::Entities](https://metacpan.org/pod/HTML::Entities) for it.
 
 # BENCHMARK
 
@@ -36,7 +36,7 @@ Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>
 
 # SEE ALSO
 
-[Text::Xslate](http://search.cpan.org/perldoc?Text::Xslate), [HTML::Entities](http://search.cpan.org/perldoc?HTML::Entities)
+[Text::Xslate](https://metacpan.org/pod/Text::Xslate), [HTML::Entities](https://metacpan.org/pod/HTML::Entities)
 
 # LICENSE
 
