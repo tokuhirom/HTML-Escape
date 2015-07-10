@@ -31,7 +31,7 @@ __END__
 
 =head1 NAME
 
-HTML::Escape - Extremely fast HTML escape
+HTML::Escape - Extremely fast HTML escaping
 
 =head1 SYNOPSIS
 
@@ -41,18 +41,19 @@ HTML::Escape - Extremely fast HTML escape
 
 =head1 DESCRIPTION
 
-This module escapes HTML's special chars. It's same as PHP's htmlspecialchars.
+This modules provides a function which escapes HTML's special characters. It
+performs a similar function to PHP's htmlspecialchars.
 
-This module uses XS for better performance.
-And also provides pure perl version.
+This module uses XS for better performance, but it also provides a pure perl
+version.
 
 =head1 FAQ
 
 =over 4
 
-=item Is there a unescape_html?
+=item Is there also an unescape_html?
 
-No. Unescaping HTML needs a lot of code, gfx don't want to do it.
+No. Unescaping HTML requires a lot of code, and we don't want to do it.
 Please use L<HTML::Entities> for it.
 
 =back
