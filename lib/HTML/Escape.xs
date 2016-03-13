@@ -7,6 +7,32 @@
 
 #include "ppport.h"
 
+/* Characters to escape:
+ *  0x22 "   0x26 &   0x27 '   0x3c <   0x3e >   0x60 `   0x7b {   0x7d }
+ *
+ * Note that we don't care whether the input uses Perl's single-byte
+ * (Latin-1) or multi-byte (UTF-8) encoding, because every byte >= 0x80 is
+ * safe regardless.
+ */
+static const char unsafe[256] = {
+    /*                 0 1 2 3   4 5 6 7   8 9 a b   c d e f */
+    /* 0x00 .. 0x0f */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+    /* 0x10 .. 0x1f */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+    /* 0x20 .. 0x2f */ 0,0,1,0,  0,0,1,1,  0,0,0,0,  0,0,0,0,
+    /* 0x30 .. 0x3f */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  1,0,1,0,
+    /* 0x40 .. 0x4f */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+    /* 0x50 .. 0x5f */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+    /* 0x60 .. 0x6f */ 1,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+    /* 0x70 .. 0x7f */ 0,0,0,0,  0,0,0,0,  0,0,0,1,  0,1,0,0,
+    /* 0x80 .. 0x8f */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+    /* 0x90 .. 0x9f */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+    /* 0xa0 .. 0xaf */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+    /* 0xb0 .. 0xbf */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+    /* 0xc0 .. 0xcf */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+    /* 0xd0 .. 0xdf */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+    /* 0xe0 .. 0xef */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+    /* 0xf0 .. 0xff */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
+};
 
 static void /* doesn't care about raw-ness */
 tx_sv_cat_with_escape_html_force(pTHX_ SV* const dest, SV* const src) {
@@ -29,8 +55,11 @@ tx_sv_cat_with_escape_html_force(pTHX_ SV* const dest, SV* const src) {
     } STMT_END
 
     while(cur != end) {
-        const char c = *(cur++);
-        if(c == '&') {
+        const unsigned char c = (unsigned char) *(cur++);
+        if(!unsafe[c]) {
+            *(d++) = c;
+        }
+        else if(c == '&') {
             CopyToken("&amp;", d);
         }
         else if(c == '<') {
@@ -51,13 +80,10 @@ tx_sv_cat_with_escape_html_force(pTHX_ SV* const dest, SV* const src) {
         else if(c == '}') {
             CopyToken("&#125;", d);
         }
-        else if(c == '\'') {
+        else {              /* c == '\'' */
             /* XXX: Internet Explorer (at least version 8) doesn't support &apos; in title */
             /* CopyToken("&apos;", d); */
             CopyToken("&#39;", d);
-        }
-        else {
-            *(d++) = c;
         }
     }
 
