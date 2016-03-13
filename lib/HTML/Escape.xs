@@ -34,6 +34,22 @@ static const char unsafe[256] = {
     /* 0xf0 .. 0xff */ 0,0,0,0,  0,0,0,0,  0,0,0,0,  0,0,0,0,
 };
 
+/* This is essentially a version of standard strcspn() that (a) handles
+ * arbitrary memory buffers, possibly containing \0 bytes, and (b) knows at
+ * compile-time which characters to detect, rather than having to build an
+ * internal data structure representing them on every call. */
+static size_t safe_character_span(const char *start, const char *end) {
+    const char *cur = start;
+    while(cur != end) {
+        unsigned char c = (unsigned char) *cur;
+        if(unsafe[c]) {
+            break;
+        }
+        cur++;
+    }
+    return cur - start;
+}
+
 static void /* doesn't care about raw-ness */
 tx_sv_cat_with_escape_html_force(pTHX_ SV* const dest, SV* const src) {
     STRLEN len;
@@ -55,35 +71,38 @@ tx_sv_cat_with_escape_html_force(pTHX_ SV* const dest, SV* const src) {
     } STMT_END
 
     while(cur != end) {
-        const unsigned char c = (unsigned char) *(cur++);
-        if(!unsafe[c]) {
-            *(d++) = c;
-        }
-        else if(c == '&') {
-            CopyToken("&amp;", d);
-        }
-        else if(c == '<') {
-            CopyToken("&lt;", d);
-        }
-        else if(c == '>') {
-            CopyToken("&gt;", d);
-        }
-        else if(c == '"') {
-            CopyToken("&quot;", d);
-        }
-        else if(c == '`') {
-            CopyToken("&#96;", d);
-        }
-        else if(c == '{') {
-            CopyToken("&#123;", d);
-        }
-        else if(c == '}') {
-            CopyToken("&#125;", d);
-        }
-        else {              /* c == '\'' */
-            /* XXX: Internet Explorer (at least version 8) doesn't support &apos; in title */
-            /* CopyToken("&apos;", d); */
-            CopyToken("&#39;", d);
+        size_t span = safe_character_span(cur, end);
+        Copy(cur, d, span, char);
+        cur += span;
+        d += span;
+        if(cur != end) {
+            const char c = *(cur++);
+            if(c == '&') {
+                CopyToken("&amp;", d);
+            }
+            else if(c == '<') {
+                CopyToken("&lt;", d);
+            }
+            else if(c == '>') {
+                CopyToken("&gt;", d);
+            }
+            else if(c == '"') {
+                CopyToken("&quot;", d);
+            }
+            else if(c == '`') {
+                CopyToken("&#96;", d);
+            }
+            else if(c == '{') {
+                CopyToken("&#123;", d);
+            }
+            else if(c == '}') {
+                CopyToken("&#125;", d);
+            }
+            else {              /*  c == '\'' */
+                /* XXX: Internet Explorer (at least version 8) doesn't support &apos; in title */
+                /* CopyToken("&apos;", d); */
+                CopyToken("&#39;", d);
+            }
         }
     }
 
