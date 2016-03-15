@@ -1,6 +1,6 @@
 # NAME
 
-HTML::Escape - Extremely fast HTML escape
+HTML::Escape - Extremely fast HTML escaping
 
 # SYNOPSIS
 
@@ -10,16 +10,17 @@ HTML::Escape - Extremely fast HTML escape
 
 # DESCRIPTION
 
-This module escapes HTML's special chars. It's same as PHP's htmlspecialchars.
+This modules provides a function which escapes HTML's special characters. It
+performs a similar function to PHP's htmlspecialchars.
 
-This module uses XS for better performance.
-And also provides pure perl version.
+This module uses XS for better performance, but it also provides a pure perl
+version.
 
 # FAQ
 
-- Is there a unescape\_html?
+- Is there also an unescape\_html?
 
-    No. Unescaping HTML needs a lot of code, gfx don't want to do it.
+    No. Unescaping HTML requires a lot of code, and we don't want to do it.
     Please use [HTML::Entities](https://metacpan.org/pod/HTML::Entities) for it.
 
 # BENCHMARK
@@ -32,7 +33,7 @@ And also provides pure perl version.
 
 Goro Fuji
 
-Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>
+Tokuhiro Matsuno &lt;tokuhirom AAJKLFJEF@ GMAIL COM>
 
 # SEE ALSO
 
