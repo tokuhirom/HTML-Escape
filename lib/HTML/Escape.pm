@@ -37,12 +37,15 @@ HTML::Escape - Extremely fast HTML escaping
 
     use HTML::Escape qw/escape_html/;
 
-    escape_html("<^o^>");
+    my $escaped = escape_html("<^o^>");
 
 =head1 DESCRIPTION
 
 This modules provides a function which escapes HTML's special characters. It
-performs a similar function to PHP's htmlspecialchars.
+performs a similar function to PHP's htmlspecialchars.  It escapes the
+following characters:
+
+    " & ' < > ` { }
 
 This module uses XS for better performance, but it also provides a pure perl
 version.
